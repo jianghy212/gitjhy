@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.school.dao.ActivityServiceDao">
+
+<insert id="addActivity">
+insert into activity(user_id,ac_name,ac_image,ac_text,ac_kind,user_qq,ac_addr,ac_city,ac_organization) 
+values(#{uid},#{headline},#{newName},#{intro},#{chats},#{contact},#{addressinfo},#{cityaddress},#{promulgator})
+</insert>
+<select id="findAct" resultType="TbActivity">
+select * from activity where user_id = #{uid} and ac_name = #{headline}
+</select>
+<select id="checkHead" resultType="TbActivity">
+select * from activity where ac_name=#{head}
+</select>
+<select id="findAllact" resultType="TbActivity">
+select * from activity
+</select>
+<select id="searchAct" resultType="TbActivity">
+select * from activity where ac_text like #{text}
+</select>
+<select id="findActByid" resultType="TbActivity">
+select * from activity where aid=#{id}
+</select>
+<select id="searchActBytype" resultType="TbActivity">
+select * from activity where ac_kind=#{type}
+</select>
+<select id="findActByUid" resultType="TbActivity" >
+select * from activity where user_id=#{uid}
+</select>
+</mapper>

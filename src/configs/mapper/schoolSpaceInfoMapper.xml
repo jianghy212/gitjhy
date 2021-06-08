@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.school.dao.SchoolSpaceInfoDao">
+ 	<select id="getAll" resultType="com.school.pojo.SchoolSpaceInfo">
+ 		select * from sch_space_info_tab
+ 	</select>
+ 	<select id="selectSchoolIdByName" resultType="Integer">
+ 		select s_id from sch_space_info_tab where sc_name = #{name}
+ 	</select>
+ 	
+ 	<select id="getAllByid" resultMap="space">
+ 	select * from sch_space_tab where s_id = #{sid} order by time desc
+ 	</select>
+ 	
+ 	<resultMap type="SchoolSpace" id="space">
+        <id property="tId" column="t_id" />
+        <result property="name" column="name" />
+        <result property="userImg" column="user_img" />
+        <result property="content" column="content" />
+        <result property="tSrc" column="t_src" />
+        <result property="time" column="time"/>
+        <result property="tSan" column="t_san"/>
+        <result property="sId" column="s_id"/>
+        <result property="status" column="status"/>
+    </resultMap>
+    <select id="findSchoolName" resultType="Integer">
+ 		select * from sch_space_info_tab where sc_name = #{scname}
+ 	</select>
+ 	 <select id="findSid" resultType="Integer">
+ 		select s_id from sch_space_info_tab where sc_name = #{scname}
+ 	</select>
+<insert id="addSpace">
+	insert into sch_space_tab(name,user_img,content,t_src,time,t_san,s_id,status) 
+	values (#{username},#{userimg},#{text},#{scimgname},#{time},#{san},#{sid},#{status})
+</insert>
+ <select id="getScimg" resultType="String">
+ 		select sc_image from sch_space_info_tab where s_id = #{id}
+ 	</select>
+ 	
+</mapper>
